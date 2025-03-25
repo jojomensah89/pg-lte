@@ -1,17 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PG-LTE Project
+
+This project is a Next.js application integrated with Tailwind CSS, PGLite, and Drizzle ORM for database management and migrations.
+
+## Prerequisites
+
+- Node.js and npm or pnpm installed
+- Basic understanding of Next.js and TypeScript
+
+## Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/jojomensah89/pg-lte.git
+cd pg-lte
+```
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+```
+
+## Configure database
+
+```bash
+// drizzle.config.ts
+export default defineConfig({
+  dialect: "postgresql",
+  schema: "./db/schema",
+  out: "./db/migrations",
+  driver: "pglite",
+  dbCredentials: {
+    url: "idb://nextjs-pglite",
+  },
+});
+```
+
+## Run migrations
+
+```bash
+pnpm run db:generate
+```
+
+## Run the development server
+
+```bash
+pnpm run dev    
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
