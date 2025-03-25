@@ -6,7 +6,8 @@ export const rolesEnum = pgEnum("roles", ["guest", "user", "admin"]);
 
 export const users = pgTable("users", {
   id: integer().generatedByDefaultAsIdentity().primaryKey(),
-  userName: varchar(),
+  userName: varchar(), 
+  color: varchar(),
   role: rolesEnum("user"),
 });
 

@@ -2,16 +2,16 @@
 
 import * as React from "react"
 import {
-  BookOpen,
-  Bot,
+  CheckSquare,
+  Calendar,
   Command,
-  Frame,
+  ClipboardList,
   LifeBuoy,
-  Map,
+  Clock,
   PieChart,
   Send,
   Settings2,
-  SquareTerminal,
+  ListTodo,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -36,63 +36,63 @@ const data = {
   },
   navMain: [
     {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
+      title: "Tasks",
+      url: "/tasks",
+      icon: CheckSquare,
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "All Tasks",
           url: "#",
         },
         {
-          title: "Starred",
+          title: "Assigned to Me",
           url: "#",
         },
         {
-          title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
+          title: "Completed",
           url: "#",
         },
       ],
     },
     {
-      title: "Documentation",
+      title: "Projects",
       url: "#",
-      icon: BookOpen,
+      icon: ClipboardList,
       items: [
         {
-          title: "Introduction",
+          title: "Active",
           url: "#",
         },
         {
-          title: "Get Started",
+          title: "Archived",
           url: "#",
         },
         {
-          title: "Tutorials",
+          title: "Templates",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Calendar",
+      url: "#",
+      icon: Calendar,
+      items: [
+        {
+          title: "Week View",
           url: "#",
         },
         {
-          title: "Changelog",
+          title: "Month View",
+          url: "#",
+        },
+        {
+          title: "Deadlines",
+          url: "#",
+        },
+        {
+          title: "Reminders",
           url: "#",
         },
       ],
@@ -111,11 +111,11 @@ const data = {
           url: "#",
         },
         {
-          title: "Billing",
+          title: "Notifications",
           url: "#",
         },
         {
-          title: "Limits",
+          title: "Integrations",
           url: "#",
         },
       ],
@@ -123,7 +123,7 @@ const data = {
   ],
   navSecondary: [
     {
-      title: "Support",
+      title: "Help",
       url: "#",
       icon: LifeBuoy,
     },
@@ -135,19 +135,19 @@ const data = {
   ],
   projects: [
     {
-      name: "Design Engineering",
+      name: "Product Development",
       url: "#",
-      icon: Frame,
+      icon: ListTodo,
     },
     {
-      name: "Sales & Marketing",
+      name: "Marketing Campaign",
       url: "#",
       icon: PieChart,
     },
     {
-      name: "Travel",
+      name: "Release Timeline",
       url: "#",
-      icon: Map,
+      icon: Clock,
     },
   ],
 }
