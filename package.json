@@ -2,6 +2,11 @@
   "name": "pg-lte",
   "version": "0.1.0",
   "private": true,
+  "keywords": [
+  "pglite",
+  "drizzle","nextjs","tailwindcss","typescript","pglite","drizzleorm","database","migrations","orm","pgliteorm"
+  ],
+  "description": "A Next.js project with Tailwind CSS, PGLite and Drizzle ORM ",
   "scripts": {
     "dev": "cross-env NODE_OPTIONS='--inspect' next dev --turbopack",
     "build": "next build",
