@@ -7,6 +7,7 @@ import {
   IconNotification,
   IconUserCircle,
 } from "@tabler/icons-react"
+import { useUsers } from "@/hooks/useUser"
 
 import {
   Avatar,
@@ -28,17 +29,31 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { Skeleton } from "@/components/ui/skeleton"
 
-export function NavUser({
-  user,
-}: {
-  user: {
-    name: string
-    email: string
-    avatar: string
-  }
-}) {
+export function NavUser() {
   const { isMobile } = useSidebar()
+  const { users } = useUsers()
+  
+  // Check if data is loading
+  const isLoading = !users
+
+  // Get the first user from the database or use a fallback
+  const user = users?.rows?.[0] || {
+    name: "Guest User",
+    email: "guest@example.com",
+    image: null
+  }
+
+  // Get initials for avatar fallback
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map(part => part[0])
+      .join('')
+      .toUpperCase()
+      .substring(0, 2)
+  }
 
   return (
     <SidebarMenu>
@@ -49,17 +64,30 @@ export function NavUser({
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Avatar className="h-8 w-8 rounded-lg grayscale">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-              </Avatar>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-                <span className="text-muted-foreground truncate text-xs">
-                  {user.email}
-                </span>
-              </div>
-              <IconDotsVertical className="ml-auto size-4" />
+              {isLoading ? (
+                <>
+                  <Skeleton className="h-8 w-8 rounded-lg bg-muted-foreground/30 dark:bg-muted-foreground/20" />
+                  <div className="grid flex-1 gap-1 text-left">
+                    <Skeleton className="h-4 w-24 bg-muted-foreground/30 dark:bg-muted-foreground/20" />
+                    <Skeleton className="h-3 w-32 bg-muted-foreground/30 dark:bg-muted-foreground/20" />
+                  </div>
+                  <IconDotsVertical className="ml-auto size-4 opacity-50" />
+                </>
+              ) : (
+                <>
+                  <Avatar className="h-8 w-8 rounded-lg grayscale">
+                    <AvatarImage src={user.image || ""} alt={user.name} />
+                    <AvatarFallback className="rounded-lg">{getInitials(user.name)}</AvatarFallback>
+                  </Avatar>
+                  <div className="grid flex-1 text-left text-sm leading-tight">
+                    <span className="truncate font-medium">{user.name}</span>
+                    <span className="text-muted-foreground truncate text-xs">
+                      {user.email}
+                    </span>
+                  </div>
+                  <IconDotsVertical className="ml-auto size-4" />
+                </>
+              )}
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -70,16 +98,28 @@ export function NavUser({
           >
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-                </Avatar>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="text-muted-foreground truncate text-xs">
-                    {user.email}
-                  </span>
-                </div>
+                {isLoading ? (
+                  <>
+                    <Skeleton className="h-8 w-8 rounded-lg bg-muted-foreground/30 dark:bg-muted-foreground/20" />
+                    <div className="grid flex-1 gap-1">
+                      <Skeleton className="h-4 w-24 bg-muted-foreground/30 dark:bg-muted-foreground/20" />
+                      <Skeleton className="h-3 w-32 bg-muted-foreground/30 dark:bg-muted-foreground/20" />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <Avatar className="h-8 w-8 rounded-lg">
+                      <AvatarImage src={user.image || ""} alt={user.name} />
+                      <AvatarFallback className="rounded-lg">{getInitials(user.name)}</AvatarFallback>
+                    </Avatar>
+                    <div className="grid flex-1 text-left text-sm leading-tight">
+                      <span className="truncate font-medium">{user.name}</span>
+                      <span className="text-muted-foreground truncate text-xs">
+                        {user.email}
+                      </span>
+                    </div>
+                  </>
+                )}
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />

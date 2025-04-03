@@ -1,14 +1,10 @@
-import { PGlite } from "@electric-sql/pglite";
-import { live} from "@electric-sql/pglite/live";
+import { PGlite, IdbFs } from "@electric-sql/pglite";
+import { live } from "@electric-sql/pglite/live";
 
-
-
-  const db = await PGlite.create({
-    extensions: { live },
-    dataDir: "idb://test-task-db",
-  });
-  await db.waitReady;
-
-
+const db = await PGlite.create({
+  extensions: { live },
+  fs: new IdbFs("test-task-db"),
+});
+await db.waitReady;
 
 export default db;

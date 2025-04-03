@@ -21,7 +21,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:generate": "tsx ./db/compile-migrations.ts"
+    "db:generate": "tsx ./db/compile-migrations.ts",
+    "clean-db": "tsx ./scripts/clean-db.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
