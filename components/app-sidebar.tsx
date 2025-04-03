@@ -2,22 +2,23 @@
 
 import * as React from "react"
 import {
-  CheckSquare,
-  Calendar,
-  Command,
-  ClipboardList,
-  LifeBuoy,
-  Clock,
-  PieChart,
-  Send,
-  Settings2,
-  ListTodo,
-} from "lucide-react"
+  IconCamera,
+  IconChartBar,
+  IconDashboard,
+  IconDatabase,
+  IconFileAi,
+  IconFileDescription,
+  IconFileWord,
+  IconFolder,
+  IconHelp,
+  IconInnerShadowTop,
+  IconListDetails,
+  IconReport,
+  IconSearch,
+  IconSettings,
+  IconUsers,
+} from "@tabler/icons-react"
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavSecondary } from "@/components/nav-secondary"
-import { NavUser } from "@/components/nav-user"
 import {
   Sidebar,
   SidebarContent,
@@ -27,6 +28,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { NavDocuments } from "@/components/nav-document"
+import { NavMain } from "@/components/nav-main"
+import { NavSecondary } from "@/components/nav-secondary"
+import { NavUser } from "@/components/nav-user"
 
 const data = {
   user: {
@@ -36,86 +41,74 @@ const data = {
   },
   navMain: [
     {
-      title: "Tasks",
-      url: "/tasks",
-      icon: CheckSquare,
-      isActive: true,
-      items: [
-        {
-          title: "All Tasks",
-          url: "#",
-        },
-        {
-          title: "Assigned to Me",
-          url: "#",
-        },
-        {
-          title: "Completed",
-          url: "#",
-        },
-      ],
+      title: "Dashboard",
+      url: "#",
+      icon: IconDashboard,
+    },
+    {
+      title: "Lifecycle",
+      url: "#",
+      icon: IconListDetails,
+    },
+    {
+      title: "Analytics",
+      url: "#",
+      icon: IconChartBar,
     },
     {
       title: "Projects",
       url: "#",
-      icon: ClipboardList,
+      icon: IconFolder,
+    },
+    {
+      title: "Team",
+      url: "#",
+      icon: IconUsers,
+    },
+  ],
+  navClouds: [
+    {
+      title: "Capture",
+      icon: IconCamera,
+      isActive: true,
+      url: "#",
       items: [
         {
-          title: "Active",
+          title: "Active Proposals",
           url: "#",
         },
         {
           title: "Archived",
           url: "#",
         },
+      ],
+    },
+    {
+      title: "Proposal",
+      icon: IconFileDescription,
+      url: "#",
+      items: [
         {
-          title: "Templates",
+          title: "Active Proposals",
+          url: "#",
+        },
+        {
+          title: "Archived",
           url: "#",
         },
       ],
     },
     {
-      title: "Calendar",
+      title: "Prompts",
+      icon: IconFileAi,
       url: "#",
-      icon: Calendar,
       items: [
         {
-          title: "Week View",
+          title: "Active Proposals",
           url: "#",
         },
         {
-          title: "Month View",
-          url: "#",
-        },
-        {
-          title: "Deadlines",
-          url: "#",
-        },
-        {
-          title: "Reminders",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Notifications",
-          url: "#",
-        },
-        {
-          title: "Integrations",
+          title: "Archived",
           url: "#",
         },
       ],
@@ -123,50 +116,53 @@ const data = {
   ],
   navSecondary: [
     {
-      title: "Help",
+      title: "Settings",
       url: "#",
-      icon: LifeBuoy,
+      icon: IconSettings,
     },
     {
-      title: "Feedback",
+      title: "Get Help",
       url: "#",
-      icon: Send,
+      icon: IconHelp,
+    },
+    {
+      title: "Search",
+      url: "#",
+      icon: IconSearch,
     },
   ],
-  projects: [
+  documents: [
     {
-      name: "Product Development",
+      name: "Data Library",
       url: "#",
-      icon: ListTodo,
+      icon: IconDatabase,
     },
     {
-      name: "Marketing Campaign",
+      name: "Reports",
       url: "#",
-      icon: PieChart,
+      icon: IconReport,
     },
     {
-      name: "Release Timeline",
+      name: "Word Assistant",
       url: "#",
-      icon: Clock,
+      icon: IconFileWord,
     },
   ],
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar variant="inset" {...props}>
+    <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
+            <SidebarMenuButton
+              asChild
+              className="data-[slot=sidebar-menu-button]:!p-1.5"
+            >
               <a href="#">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <Command className="size-4" />
-                </div>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">Acme Inc</span>
-                  <span className="truncate text-xs">Enterprise</span>
-                </div>
+                <IconInnerShadowTop className="!size-5" />
+                <span className="text-base font-semibold">Acme Inc.</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -174,7 +170,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavDocuments items={data.documents} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>

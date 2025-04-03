@@ -7,7 +7,7 @@
 - Project Name: personal_task_manager
 - Programming Language: Next.js, JavaScript/TypeScript
 - UI Framework: Tailwind CSS, Shadcn UI
-- Database: SQLite (via PGlite) + Drizzle ORM
+- Database: via PGlite + Drizzle ORM
 
 ### 1.2 Original Requirements
 
