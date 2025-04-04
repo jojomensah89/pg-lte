@@ -1,7 +1,6 @@
 "use client"
 
 import {
-  IconCreditCard,
   IconDotsVertical,
   IconLogout,
   IconNotification,
@@ -75,7 +74,7 @@ export function NavUser() {
                 </>
               ) : (
                 <>
-                  <Avatar className="h-8 w-8 rounded-lg grayscale">
+                  <Avatar className="h-8 w-8 rounded-lg ">
                     <AvatarImage src={user.image || ""} alt={user.name} />
                     <AvatarFallback className="rounded-lg">{getInitials(user.name)}</AvatarFallback>
                   </Avatar>
@@ -108,7 +107,7 @@ export function NavUser() {
                   </>
                 ) : (
                   <>
-                    <Avatar className="h-8 w-8 rounded-lg">
+                    <Avatar className="h-8 w-8 rounded-lg grayscale">
                       <AvatarImage src={user.image || ""} alt={user.name} />
                       <AvatarFallback className="rounded-lg">{getInitials(user.name)}</AvatarFallback>
                     </Avatar>
@@ -127,10 +126,6 @@ export function NavUser() {
               <DropdownMenuItem>
                 <IconUserCircle />
                 Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconCreditCard />
-                Billing
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <IconNotification />
